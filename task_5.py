@@ -3,10 +3,9 @@ class Results:
         self.victories = victories
         self.draws = draws
         self.losses = losses
-
-    @staticmethod
-    def total_points(wins:int, draws:int) -> str:
-        total_points = 3 * (wins + draws)
+    
+    def total_points(self) -> str:
+        total_points = 3 * (self.victories + self.draws)
         return f'Общее количество очков: {total_points}'
 
 class Football(Results):
@@ -39,4 +38,11 @@ class Hockey(Results):
 football_team = Football(2, 2, 2)
 hockey_team = Hockey(2, 2, 2)
 
-
+for i in (football_team, hockey_team):
+    for j in dir(i):
+        if j.startswith('__'):
+            continue
+        else:
+            method = getattr(i, j)
+            if callable(method):
+                print(method())
