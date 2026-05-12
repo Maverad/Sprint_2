@@ -3,10 +3,6 @@ class Results:
         self.victories = victories
         self.draws = draws
         self.losses = losses
-    
-    def total_points(self) -> str:
-        total_points = 3 * (self.victories + self.draws)
-        return f'Общее количество очков: {total_points}'
 
 class Football(Results):
     def __init__(self, victories:int=0, draws:int=0, losses:int=0):
@@ -21,6 +17,10 @@ class Football(Results):
     def number_of_losses(self) -> str:
         return f'Футбольных поражений: {self.losses}'
 
+    def total_points(self) -> str:
+        total_points = 3 * (self.victories + self.draws)
+        return f'Общее количество очков: {total_points}'
+
 class Hockey(Results):
     def __init__(self, victories:int=0, draws:int=0, losses:int=0):
         super().__init__(victories, draws, losses)
@@ -33,7 +33,10 @@ class Hockey(Results):
 
     def number_of_losses(self) -> str:
         return f'Хоккейных поражений: {self.losses}'
-
+    
+    def total_points(self) -> str:
+        total_points = 2 * (self.victories + self.draws)
+        return f'Общее количество очков: {total_points}'
 
 football_team = Football(2, 2, 2)
 hockey_team = Hockey(2, 2, 2)
